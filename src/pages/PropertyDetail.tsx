@@ -3,6 +3,8 @@ import { MapPin, DollarSign, TrendingUp, Percent, Calendar, FileText, ExternalLi
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OwnershipRing from "@/components/OwnershipRing";
+import HealthBadge from "@/components/HealthBadge";
+import InfoTooltip from "@/components/InfoTooltip";
 import propertySample from "@/assets/property-sample.jpg";
 
 const ownershipData = [
@@ -13,10 +15,10 @@ const ownershipData = [
 ];
 
 const details = [
-  { icon: DollarSign, label: "Current Salary Pool", value: "$18,200/mo" },
-  { icon: TrendingUp, label: "Deposit Goal", value: "$97,000" },
-  { icon: Percent, label: "Mortgage Rate", value: "5.25%" },
-  { icon: DollarSign, label: "House Value", value: "$485,000" },
+  { icon: DollarSign, label: "Current Salary Pool", value: "$18,200/mo", health: "on-track" as const, tip: "Combined monthly income of all co-owners used to assess affordability." },
+  { icon: TrendingUp, label: "Deposit Goal", value: "$97,000", health: "on-track" as const, tip: "Total deposit needed. Your team is at 68% — strong progress toward this target." },
+  { icon: Percent, label: "Mortgage Rate", value: "5.25%", health: "caution" as const, tip: "Current estimated mortgage interest rate. Rates fluctuate — lock in when ready." },
+  { icon: DollarSign, label: "House Value", value: "$485,000", health: "on-track" as const, tip: "Estimated property market value based on recent comparable sales." },
 ];
 
 const milestones = [
@@ -33,7 +35,7 @@ const PropertyDetail = () => {
       <div className="container py-8">
         <AnimatedSection>
           <h1 className="text-3xl font-bold text-foreground">Property Details</h1>
-          <p className="mt-1 text-muted-foreground">Current plan overview</p>
+          <p className="mt-1 text-muted-foreground">Edit property details & financials</p>
         </AnimatedSection>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-5">
@@ -65,11 +67,15 @@ const PropertyDetail = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
                   >
-                    <div className="flex items-center gap-2 text-muted-foreground">
+                    <div className="flex items-center gap-1.5 text-muted-foreground">
                       <d.icon className="h-4 w-4" />
                       <span className="text-xs">{d.label}</span>
+                      <InfoTooltip content={d.tip} />
                     </div>
                     <p className="mt-1 font-display text-xl font-bold text-foreground">{d.value}</p>
+                    <div className="mt-1">
+                      <HealthBadge status={d.health} />
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -81,9 +87,12 @@ const PropertyDetail = () => {
             {/* Ownership */}
             <AnimatedSection delay={0.2}>
               <div className="rounded-2xl border border-border bg-card p-6">
-                <h2 className="mb-4 font-display text-lg font-semibold text-foreground">
-                  Ownership Split
-                </h2>
+                <div className="mb-4 flex items-center gap-2">
+                  <h2 className="font-display text-lg font-semibold text-foreground">
+                    Ownership Split
+                  </h2>
+                  <InfoTooltip content="Ownership shares are adjustable. Partners can renegotiate percentages as contributions change." />
+                </div>
                 <div className="flex justify-center">
                   <OwnershipRing shares={ownershipData} size={160} />
                 </div>
@@ -96,6 +105,9 @@ const PropertyDetail = () => {
                     </div>
                   ))}
                 </div>
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                  Flexible ownership · Exit options available
+                </p>
               </div>
             </AnimatedSection>
 
@@ -141,9 +153,11 @@ const PropertyDetail = () => {
                 <Button className="w-full gap-2 rounded-xl">
                   <FileText className="h-4 w-4" /> View Contract
                 </Button>
+                <p className="text-center text-xs text-muted-foreground">Review your co-ownership agreement and terms</p>
                 <Button variant="outline" className="w-full gap-2 rounded-xl">
                   <ExternalLink className="h-4 w-4" /> Property Listing
                 </Button>
+                <p className="text-center text-xs text-muted-foreground">See the original listing with photos and specs</p>
               </div>
             </AnimatedSection>
           </div>

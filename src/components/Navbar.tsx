@@ -62,9 +62,12 @@ const Navbar = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" className="hidden md:inline-flex">
-            Sign In
-          </Button>
+          <div className="hidden items-center gap-2 md:flex">
+            <span className="text-xs text-muted-foreground">Free to start</span>
+            <Button variant="outline" size="sm">
+              Sign In
+            </Button>
+          </div>
 
           {/* Mobile menu button */}
           <button

@@ -62,17 +62,22 @@ const Landing = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Link to="/dashboard">
-                <Button size="lg" className="gap-2 rounded-xl px-6">
-                  Get Started <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/property">
-                <Button variant="outline" size="lg" className="rounded-xl px-6">
-                  Explore Properties
-                </Button>
-              </Link>
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Link to="/dashboard">
+                  <Button size="lg" className="gap-2 rounded-xl px-6">
+                    Get Started Free <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link to="/property">
+                  <Button variant="outline" size="lg" className="rounded-xl px-6">
+                    Explore Properties
+                  </Button>
+                </Link>
+              </div>
+              <p className="max-w-md text-xs text-muted-foreground">
+                Track shared ownership, align financial goals, and build equity together — with full transparency and flexibility.
+              </p>
             </div>
           </AnimatedSection>
 
@@ -152,6 +157,9 @@ const Landing = () => {
               Start Your Journey <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
+          <p className="mt-3 text-xs text-muted-foreground">
+            No commitment required · Flexible ownership · Exit anytime
+          </p>
         </AnimatedSection>
       </section>
 
