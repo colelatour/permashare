@@ -1,0 +1,17 @@
+{
+  "name": "share-harmony-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express backend for Share Harmony",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
