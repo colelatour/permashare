@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS "HouseDetails" (
   contract_id INTEGER,
   house_title VARCHAR(255) NOT NULL,
   listing_price NUMERIC(12,2),
+  house_value NUMERIC(12,2),
   street_address VARCHAR(255),
   city VARCHAR(100),
   state VARCHAR(100),
@@ -47,6 +48,9 @@ CREATE TABLE IF NOT EXISTS "HouseDetails" (
   square_footage NUMERIC(12,2),
   num_bedrooms INTEGER,
   num_bathrooms NUMERIC(4,1),
+  current_salary_pool NUMERIC(12,2),
+  deposit_goal NUMERIC(12,2),
+  mortgage_rate NUMERIC(5,2),
   CONSTRAINT fk_house_contract
     FOREIGN KEY (contract_id)
     REFERENCES "Contract"(contract_id)
