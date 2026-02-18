@@ -60,25 +60,26 @@ cd ..
 
 4. Create the PostgreSQL database:
 ```bash
-createdb -h localhost -p 5432 -U colelatour permashare
+createdb -h localhost -p 5432 -U username permashare
 ```
 If it already exists, continue to the next step.
 
 5. Run schema and seed scripts:
 ```bash
-psql -h localhost -p 5432 -U colelatour -d permashare -f db/create_database.sql
-psql -h localhost -p 5432 -U colelatour -d permashare -f db/seed.sql
+psql -h localhost -p 5432 -U username -d permashare -f db/create_database.sql
+psql -h localhost -p 5432 -U username -d permashare -f db/seed.sql
 ```
 
 6. Configure backend environment variables in `backend/.env`:
+**MAKE SURE TO ADD AND EDIT YOUR OWN INFORMATION INTO THE PAGE**
 ```env
 PORT=3001
 PGHOST=localhost
 PGPORT=5432
 PGDATABASE=permashare
-PGUSER=colelatour
-PGPASSWORD=
-DATABASE_URL=postgresql://colelatour@localhost:5432/permashare
+PGUSER= your_username
+PGPASSWORD= your_password
+DATABASE_URL=postgresql://your-username@localhost:5432/permashare
 ```
 
 ## Running the Application
@@ -107,7 +108,7 @@ Open:
 - House Value
 3. Confirm DB update using `psql`:
 ```bash
-psql -h localhost -p 5432 -U colelatour -d permashare -c 'SELECT house_id, current_salary_pool, deposit_goal, mortgage_rate, house_value FROM "HouseDetails" WHERE house_id = 1;'
+psql -h localhost -p 5432 -U your_username -d permashare -c 'SELECT house_id, current_salary_pool, deposit_goal, mortgage_rate, house_value FROM "HouseDetails" WHERE house_id = 1;'
 ```
 4. Refresh the property page in the browser.
 5. Confirm the edited value is still displayed after refresh (proves persistence from PostgreSQL, not local UI state).
